@@ -1,0 +1,26 @@
+<form action=" " method="post">
+                             <input type="text" name="search" id="" placeholder="search">
+                             <button type="submit" name="submit">search</button>  
+                             </form>
+                            <?php
+                            $conn=mysqli_connect("localhost","root","","annam");
+                            if(isset($_POST['search'])){
+                                $search=mysqli_real_escape_string($conn,$_POST['search']);
+                                $sql="SELECT * FROM student WHERE cost LIKE '%$search%' ";
+                                $result= mysqli_query($conn,$sql);
+                                $queryresult=mysqli_num_rows($result);
+                                if ($queryresult > 0){
+
+                                while($row=mysqli_fetch_assoc($result)){
+                                    echo "<p>".$row['cost']."</p>";
+                                    echo "".$row['pid'];
+                                    echo "".$row['pname'];
+                                //  echo   "<img src="echo base64_encode($row['image']);" alt="Image" ";
+                                // echo base64_encode($row['image']);
+                                }
+                                }else{
+                                   echo "no results"; 
+                                }
+                            
+                            }                
+                            ?>
