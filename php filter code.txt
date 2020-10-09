@@ -1,0 +1,104 @@
+<?php
+                            $conn=mysqli_connect("localhost","root","","annam");
+                            if(isset($_POST['search'])){
+                                $search=mysqli_real_escape_string($conn,$_POST['search']);
+                                $sql="SELECT * FROM student WHERE cost LIKE '%$search%'  ";
+                                $result= mysqli_query($conn,$sql);
+                                $queryresult=mysqli_num_rows($result);
+                                if ($queryresult > 0){
+
+                                while($row=mysqli_fetch_assoc($result)){?>
+                    <div class="col-md-4">
+                        <div class="cause shadow-sm">
+
+                            <a href="#" class="cause-link d-block">
+                                <img src="data:image/jpeg;base64,<?php echo base64_encode($row['image']);?>" alt="Image"
+                                    class="img-fluid">
+                                <div class="custom-progress-wrap">
+                                    <!-- <span class="caption">80% complete</span>-->
+                                    <div class="custom-progress-inner">
+                                        <div class="custom-progress bg-primary" style="width: 100%;"></div>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <div class="px-3 pt-3 border-top-0 border border shadow-sm">
+                                <span
+                                    class="badge-warning py-1 small px-2 rounded mb-3 d-inline-block"><?php echo" ".$row['nam']; ?>
+                                </span>
+                                <h3 class="mb-4"><a href="#"><?php echo "".$row['pid'];?>
+                                    </a></h3>
+                                <div class="border-top border-light border-bottom py-2 d-flex">
+                                    <div><?php echo  "".$row['cost'];?>
+                                    </div>
+                                    <div class="ml-auto"><strong
+                                            class="text-primary"><?php echo "".$row['pinn'];?></strong></div>
+                                </div>
+
+                                <div class="border-top border-light border-bottom py-2 d-flex" style="height:60px;">
+                                    <div><?php echo "".$row['stock']; ?>
+                                    </div>
+                                    <div class="ml-auto"><strong class="text-primary" style="font-size:15px;">
+                                            <?php echo  "".$row['web']; ?></strong></div>
+                                </div>
+
+                            
+                                
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <?php
+                                }
+                                }else{
+                                   echo "no results"; 
+                                }
+                            
+                            }  else{
+                                $result="SELECT * FROM student  where pname='Physically challenged school' ";
+		                        $query= mysqli_query($conn,$result);
+		                        while($row=mysqli_fetch_array($query)){ ?>
+                    <div class="col-md-4">
+                        <div class="cause shadow-sm">
+
+                            <a href="#" class="cause-link d-block">
+                                <img src="data:image/jpeg;base64,<?php echo base64_encode($row['image']);?>" alt="Image"
+                                    class="img-fluid">
+                                <div class="custom-progress-wrap">
+                                    <!-- <span class="caption">80% complete</span>-->
+                                    <div class="custom-progress-inner">
+                                        <div class="custom-progress bg-primary" style="width: 100%;"></div>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <div class="px-3 pt-3 border-top-0 border border shadow-sm">
+                                <span
+                                    class="badge-warning py-1 small px-2 rounded mb-3 d-inline-block"><?php echo" ".$row['nam']; ?>
+                                </span>
+                                <h3 class="mb-4"><a href="#"><?php echo "".$row['pid'];?>
+                                    </a></h3>
+                                <div class="border-top border-light border-bottom py-2 d-flex">
+                                    <div><?php echo  "".$row['cost'];?>
+                                    </div>
+                                    <div class="ml-auto"><strong
+                                            class="text-primary"><?php echo "".$row['pinn'];?></strong></div>
+                                </div>
+
+                                <div class="border-top border-light border-bottom py-2 d-flex" style="height:60px;">
+                                    <div><?php echo "".$row['stock']; ?>
+                                    </div>
+                                    <div class="ml-auto"><strong class="text-primary" style="font-size:15px;">
+                                            <?php echo  "".$row['web']; ?></strong></div>
+                                </div>
+
+                                
+                                
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <?php  } ?>
+                    <?php  } ?>
